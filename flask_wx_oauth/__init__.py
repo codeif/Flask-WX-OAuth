@@ -1,15 +1,14 @@
 # -*- coding: utf-8 -*-
-from rauth.session import RauthSession, OAUTH2_DEFAULT_TIMEOUT
+from rauth.compat import is_basestring, parse_qsl, urlencode
 from rauth.service import Service
-from rauth.compat import urlencode, is_basestring, parse_qsl
+from rauth.session import OAUTH2_DEFAULT_TIMEOUT, RauthSession
 
 
 class WXOAuth(Service):
     """网站应用微信OAuth2.0登录服务"""
     def __init__(self, app=None):
         #: The provider's access token URL.
-        self.access_token_url = \
-            'https://api.weixin.qq.com/sns/oauth2/access_token',
+        self.access_token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token'
         #: Object used to construct sessions with.
         self.session_obj = WXSession
 

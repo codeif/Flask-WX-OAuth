@@ -1,13 +1,12 @@
 #!/usr/bin/env python
-from setuptools import setup, find_packages
-
+from setuptools import find_packages, setup
 
 with open('README.rst') as f:
     readme = f.read()
 
 setup(
     name='Flask-WX-OAuth',
-    version='0.1.1',
+    version='0.1.2',
     description='Flask Extension for wechat oauth2.0.',
     long_description=readme,
     author='codeif',
