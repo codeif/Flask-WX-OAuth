@@ -3,6 +3,13 @@ Flask-WX-OAuth
 
 微信文档: `微信网页授权 <https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842>`_
 
+安装
+-------
+
+.. code-block:: sh
+
+    pip install Flask-WX-OAuth
+
 使用方式
 ----------
 

@@ -6,7 +6,7 @@ with open('README.rst') as f:
 
 setup(
     name='Flask-WX-OAuth',
-    version='0.1.2',
+    version='0.1.3',
     description='Flask Extension for wechat oauth2.0.',
     long_description=readme,
     author='codeif',
