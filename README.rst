@@ -1,7 +1,11 @@
 Flask-WX-OAuth
 ==============
 
-微信文档: `微信网页授权 <https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842>`_
+微信文档:
+
+- `微信网页授权 <https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421140842>`_
+
+- `授权后接口调用 <https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316518&lang=zh_CN>`_
 
 安装
 -------

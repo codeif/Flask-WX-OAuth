@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{{ url_for('.userinfo') }}" method="post">
+  <div class="weui-cells">
+    <div class="weui-cell">
+      <div class="weui-cell__bd">
+        <input class="weui-input" name="access_token" type="text" value="{{info.get('access_token')}}" placeholder="请输入access_token" />
+      </div>
+    </div>
+    <div class="weui-cell">
+      <div class="weui-cell__bd">
+        <input class="weui-input" name="openid" type="text" value="{{info.get('openid')}}" placeholder="请输入openid" />
+      </div>
+    </div>
+  </div>
+
+  <div class="weui-btn-area">
+    <button class="weui-btn weui-btn_primary" type="submit">确定</button>
+  </div>
+</form>
+{% endblock %}

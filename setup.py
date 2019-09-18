@@ -6,13 +6,13 @@ with open('README.rst') as f:
 
 setup(
     name='Flask-WX-OAuth',
-    version='0.1.3',
+    version='0.2.0',
     description='Flask Extension for wechat oauth2.0.',
     long_description=readme,
     author='codeif',
     author_email='me@codeif.com',
     url='https://github.com/codeif/Flask-WX-OAuth',
     license='MIT',
-    install_requires=['rauth'],
+    install_requires=['requests'],
     packages=find_packages(),
 )
