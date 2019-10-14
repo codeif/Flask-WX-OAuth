@@ -22,6 +22,8 @@ Flask-WX-OAuth
 
 .. code-block:: python
 
+    from flask_wx_oauth import WXOAuth
+
     wx_oauth = WXOAuth()
     wx_oauth.init_app(app)
 
