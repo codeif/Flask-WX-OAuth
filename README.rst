@@ -10,6 +10,8 @@ Flask-WX-OAuth
 
 - `授权后接口调用 <https://open.weixin.qq.com/cgi-bin/showdocument?action=dir_list&t=resource/res_list&verify=1&id=open1419316518&lang=zh_CN>`_
 
+- `公众平台测试账号 <http://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login>`_
+
 安装
 -------
 
@@ -20,6 +22,8 @@ Flask-WX-OAuth
 使用方式
 ----------
 
+flask扩展的使用方式:
+
 .. code-block:: python
 
     from flask_wx_oauth import WXOAuth
@@ -27,7 +31,15 @@ Flask-WX-OAuth
     wx_oauth = WXOAuth()
     wx_oauth.init_app(app)
 
-配置 WX_APPID 和 WX_SECRET
+
+
+也可以每次初始化后使用:
+
+.. code-block:: python
+
+    from flask_wx_oauth import WXOAuth
+    wx_oauth = WXOAuth(appid='YOUR APPID', secret='YOUR SECRET')
+
 
 在view中调用
 --------------

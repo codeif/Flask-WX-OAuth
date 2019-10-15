@@ -15,6 +15,6 @@ API
 .. module:: flask_wx_oauth
 
 .. autoclass:: WXOAuth
-    :inherited-members:
+    :members:
 
-
+    .. automethod:: __init__
