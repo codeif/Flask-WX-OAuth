@@ -22,10 +22,8 @@ class WXOAuth:
         self.base_url = 'https://api.weixin.qq.com/sns'
         self.authorize_url = 'https://open.weixin.qq.com/connect/oauth2/authorize'
 
-        if appid:
-            self.appid = appid
-        if secret:
-            self.secret = secret
+        self.appid = appid
+        self.secret = secret
 
         if app is not None:
             self.init_app(app)

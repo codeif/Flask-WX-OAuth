@@ -1,10 +1,9 @@
-from flask import Blueprint, jsonify, redirect, render_template, request, url_for
+from flask import Blueprint, jsonify, redirect, render_template, request, session
 
 from .core import wx_oauth
+from .decorators import openid_required
 
-global_info = {}
-
-bp = Blueprint('demo', __name__)
+bp = Blueprint('views', __name__)
 
 
 @bp.route('/')
@@ -12,52 +11,46 @@ def index():
     return render_template('index.html')
 
 
-@bp.route('/get-access-token')
-def get_access_token():
-    if not global_info:
-        redirect_uri = url_for('.authorized', _external=True)
-        params = dict(
-            redirect_uri=redirect_uri,
-            scope='snsapi_userinfo',
-        )
-        return redirect(wx_oauth.get_authorize_url(**params))
-    return render_template('access_token.html', items=global_info.items())
-
-
 @bp.route('/authorized')
 def authorized():
     code = request.args.get('code')
+    next_ = request.args.get('next', '/')
     if not code:
         return 'missing param code'
-    token_info = wx_oauth.get_access_token(code)
-    global global_info
-    global_info = token_info
-    # return render_template('access_token.html', items=access_token.items())
-    return redirect(url_for('.get_access_token'))
+    at_data = wx_oauth.get_access_token(code)
+    # session可以过期
+    session.permanent = True
+    session['openid'] = at_data['openid']
+    session['access_token'] = at_data['access_token']
+    session['refresh_token'] = at_data['refresh_token']
+    return redirect(next_)
 
 
 @bp.route('/refresh-token')
+@openid_required
 def refresh_token():
-    global global_info
-    refresh_token = global_info['refresh_token']
-    token_info = wx_oauth.refresh_token(refresh_token)
-    global_info = token_info
-    return jsonify(token_info)
+    refresh_token = session['refresh_token']
+    at_data = wx_oauth.refresh_token(refresh_token)
+    session.permanent = True
+    session['openid'] = at_data['openid']
+    session['access_token'] = at_data['access_token']
+    session['refresh_token'] = at_data['refresh_token']
+    return jsonify(at_data)
 
 
 @bp.route('/check-access-token')
+@openid_required
 def check_access_token():
-    access_token = global_info['access_token']
-    openid = global_info['openid']
+    access_token = session['access_token']
+    openid = session['openid']
     result = wx_oauth.check_access_token(access_token, openid)
     return jsonify(result)
 
 
 @bp.route('/userinfo', methods=['GET', 'POST'])
+@openid_required
 def userinfo():
-    if request.method == 'GET':
-        return render_template('userinfo.html', info=global_info)
-    else:
-        access_token = request.form['access_token']
-        openid = request.form['openid']
-        return jsonify(wx_oauth.get_userinfo(access_token, openid))
+    access_token = session['access_token']
+    openid = session['openid']
+    info = wx_oauth.get_userinfo(access_token, openid)
+    return jsonify(info)
