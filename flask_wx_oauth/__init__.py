@@ -6,8 +6,8 @@ from urllib.parse import urlencode
 
 import requests
 
-DEFAULT_TIMEOUT = 10
-__version__ = '0.2.2'
+DEFAULT_TIMEOUT = 30
+__version__ = '0.2.3'
 
 
 class WXOAuth:

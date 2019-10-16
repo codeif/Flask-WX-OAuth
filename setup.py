@@ -26,4 +26,9 @@ setup(
         "Programming Language :: Python :: 3",
     ],
     packages=find_packages(),
+    extras_require={
+        "docs": [
+            "sphinx",
+        ],
+    },
 )
